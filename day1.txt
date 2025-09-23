@@ -1,57 +1,54 @@
-import { Injectable } from "@angular/core";
-import { UserDetails } from "../../models/UserDetails";
-
-
-@Injectable({
-    providedIn: 'root'
-})
-export class UserDataService {
-
-    private users: UserDetails[] = []
-
-    addUser(user: UserDetails) {
-        user.id = this.users.length + 1
-        this.users.push(user)
-        console.log(this.users);
-        
-    }
-}
-
-
----
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { UserDataService } from '../../shared/services/userdata.service';
-import { UserDetails } from '../../models/UserDetails';
+import { Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.css'
+  selector: 'app-dd-form',
+  templateUrl: './dd-form.component.html',
+  styleUrl: './dd-form.component.css'
 })
-export class UserFormComponent {
-  constructor(private us:UserDataService){}
-  addUser(nf:NgForm){
-    
-    const newUser= new UserDetails(0,nf.value.uname,nf.value.pass,nf.value.email,nf.value.city)
-    this.us.addUser(newUser)
-    
-  }
+export class DdFormComponent {
+  myForm!: FormGroup
+  uname!: FormControl
+  pass!: FormControl
+  email!: FormControl
+  city!: FormControl
 
+  createForm() {
+    this.myForm = new FormGroup({
+      uname: this.uname,
+      pass: this.pass,
+      email: this.email,
+      city: this.city
+    })
+  }
+  createFormControl() {
+    this.uname = new FormControl('',[Validators.required,Validators.minLength(6)])
+    this.pass = new FormControl('')
+    this.email = new FormControl('',[this.emailDomainValidator])
+    this.city = new FormControl('')
+  }
+constructor(){
+  this.createFormControl()
+  this.createForm()
+}
+addUser(){
+  console.log(this.myForm.value);
+  
+}
+emailDomainValidator(control:FormControl){
+  let email= control.value
+  if(email && email.indexOf('@')!=- 1){
+  let [before,domain]= email.split('@')
+    if(domain != 'siemens.com'){
+      return {
+        emailDomain:{
+          pd: domain
+        }
+      }
+    }
+  }
+return null
 }
 
-
-------
-
-export class UserDetails {
-
-    constructor(
-        public id: number,
-        public uname: string,
-        public password: string,
-        public email: string,
-        public city: string
-
-
-    ) { }
 }
