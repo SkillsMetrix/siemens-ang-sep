@@ -1,27 +1,35 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
+.sidenav-container {
+  height: 100vh;
+}
 
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ],
-  exports: [MatInputModule,
-    MatFormFieldModule, MatCardModule,
-    MatButtonModule, MatSnackBarModule, MatTableModule, MatIconModule, MatDialogModule,
-    MatToolbarModule, MatMenuModule, MatListModule, MatSidenavModule,
-    CommonModule]
-})
-export class MaterialModule { }
+.sidenav {
+  width: 220px;
+}
+
+.top-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.nav-label {
+  margin-left: 12px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  padding: 16px;
+}
+
+/* mobile tweaks */
+@media (max-width: 767px) {
+  .sidenav[opened] {
+    display: none;
+  }
+  .mobile-toggle {
+    display: inline-flex;
+  }
+}
