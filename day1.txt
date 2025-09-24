@@ -1,54 +1,29 @@
-import { Component } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { FormControl, FormGroup } from '@angular/forms';
+<mat-card>
+    <mat-card-title>User List</mat-card-title>
+    <div class="table-container">
+        <table mat-table [dataSource]="users" class="mat-elevation-z8">
 
-@Component({
-  selector: 'app-dd-form',
-  templateUrl: './dd-form.component.html',
-  styleUrl: './dd-form.component.css'
-})
-export class DdFormComponent {
-  myForm!: FormGroup
-  uname!: FormControl
-  pass!: FormControl
-  email!: FormControl
-  city!: FormControl
 
-  createForm() {
-    this.myForm = new FormGroup({
-      uname: this.uname,
-      pass: this.pass,
-      email: this.email,
-      city: this.city
-    })
-  }
-  createFormControl() {
-    this.uname = new FormControl('',[Validators.required,Validators.minLength(6)])
-    this.pass = new FormControl('')
-    this.email = new FormControl('',[this.emailDomainValidator])
-    this.city = new FormControl('')
-  }
-constructor(){
-  this.createFormControl()
-  this.createForm()
-}
-addUser(){
-  console.log(this.myForm.value);
-  
-}
-emailDomainValidator(control:FormControl){
-  let email= control.value
-  if(email && email.indexOf('@')!=- 1){
-  let [before,domain]= email.split('@')
-    if(domain != 'siemens.com'){
-      return {
-        emailDomain:{
-          pd: domain
-        }
-      }
-    }
-  }
-return null
-}
+            <ng-container matColumnDef="uname">
+                <th mat-header-cell *matHeaderCellDef>User Name</th>
+                <td mat-cell *matCellDef="let user">{{user.uname}}</td>
+            </ng-container>
 
-}
+
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let user">{{user.email}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef>City</th>
+                <td mat-cell *matCellDef="let user">{{user.city}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    </div>
+</mat-card>
