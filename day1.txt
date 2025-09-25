@@ -1,1 +1,21 @@
-https://github.com/SkillsMetrix/siemens-angular-june/blob/main/ngrx-template.zip
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { DataService } from "src/app/Service/data.service";
+import { getMovies, getMoviesSuccess } from "../Actions/movie.action";
+import { exhaustMap, map } from "rxjs/operators";
+
+export class MovieEffects {
+
+    constructor(private action$: Actions, private ds: DataService) { }
+
+    loadMovie$ = createEffect(() =>
+        this.action$.pipe(
+            ofType(getMovies),
+            exhaustMap(() =>
+                this.ds.getMovies().pipe(
+                    map((movies) => getMoviesSuccess(movies))
+                )
+            )
+        )
+
+    )
+}
