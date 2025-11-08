@@ -1,0 +1,46 @@
+<div>
+    First Way
+    <ul>
+        <li *ngFor="let user of users">
+            {{user}}
+        </li>
+    </ul>
+</div>
+
+
+<div> Second Way
+    <ul>
+        @for (user of users; track $index) {
+        <li>
+            {{$index}} -- {{user}}
+        </li>
+        }
+
+    </ul>
+
+
+</div>
+
+
+
+<div>for and if
+    <ul>
+        @for (user of userData; track user.id) {
+        @if(user.active){
+        <li>
+            ✅ {{$index +1}} , {{user.name}}
+        </li>
+        }@else {
+        <li>
+            🚫 {{$index +1}} -- {{user.name}} (Inactive)
+        </li>
+        }
+        }@empty {
+            <h3>NO Records Found</h3>
+        }
+
+    </ul>
+
+
+</div>
+<p>&copy; 2025 {{company}}</p>

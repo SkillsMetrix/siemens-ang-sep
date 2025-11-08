@@ -1,0 +1,43 @@
+<div id="uform">
+  <mat-card style="width: 350px; padding: 20px">
+    <mat-card-header>
+      <mat-card-title>User Registration Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="addUser()" [formGroup]="myForm">
+        <mat-form-field appearance="outline">
+          <mat-label>UserName</mat-label>
+          <input matInput placeholder="Enter UserName"  formControlName="uname"/>
+           <mat-error *ngIf="uname.invalid">
+                    {{getErrorMeeage('uname')}}
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter Password"  formControlName="pass"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Enter Email"  formControlName="email"/>
+
+            <mat-error *ngIf="email.invalid">
+         
+          <div *ngIf="email.errors?.['emailDomain']">Email Must be siemens.com</div>
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput type="text" placeholder="Enter City"  formControlName="city"/>
+        </mat-form-field>
+
+        <button [disabled]="myForm.invalid" mat-raised-button color="primary">Register</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<hr>
+<app-loadusers></app-loadusers>

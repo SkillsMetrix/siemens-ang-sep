@@ -1,0 +1,21 @@
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { UserDataService } from '../../shared/services/userdata.service';
+import { UserDetails } from '../../models/UserDetails';
+
+@Component({
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
+  styleUrl: './user-form.component.css'
+})
+export class UserFormComponent {
+  constructor(private us:UserDataService){}
+
+  addUser(nf:NgForm){
+    
+    const newUser= new UserDetails(nf.value.uname,nf.value.pass,nf.value.email,nf.value.city)
+    this.us.addUser(newUser)
+    
+  }
+
+}

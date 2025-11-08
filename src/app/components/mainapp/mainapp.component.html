@@ -1,0 +1,12 @@
+<app-header [mycity]="newcity"></app-header>
+<p>mainapp works!</p>
+<app-users></app-users>
+
+<button (click)="inc()">INC</button>
+
+<button (click)="dec()">DEC</button>
+<p>Task</p>
+<input type="text" [(ngModel)]="imageurl"/>
+
+<img [src]= "imageurl" width="100" height="100">
+<app-footer></app-footer>

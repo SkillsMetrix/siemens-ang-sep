@@ -1,0 +1,12 @@
+#uform {
+    max-width: 300px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+}
+.success-snackbar{
+    background-color: green;
+    color: white;
+}

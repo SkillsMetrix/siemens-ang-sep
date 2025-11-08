@@ -1,0 +1,32 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.user-card{
+    width: 600px;
+    padding: 16px;
+    text-align: center;
+}
+.table-container{
+    overflow-x: auto;
+    margin-top: 16px;
+}
+.compact-table{
+   width: 100%;
+    border-collapse: collapse;
+
+}
+.compact-table th,
+.compact-table td {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.compact-table th{
+    background-color: pink;
+    font-weight: 600;
+}

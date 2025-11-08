@@ -1,0 +1,14 @@
+
+
+My City<input type="text" [(ngModel)]="mycity">
+<p>{{mycity}}</p>
+<br>
+ 
+<button (click)="addUser()">Click</button>
+<br>
+
+<p>Style Binding</p>
+
+<ul *ngFor="let person of users">
+    <li [ngStyle]="{'color':getColor(person.country)}">{{person.name}} --- {{person.country}}</li>
+</ul>
